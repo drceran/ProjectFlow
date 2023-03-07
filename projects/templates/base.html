@@ -12,8 +12,11 @@
     <header>
         <nav>
             <ul>
+                {% if user.is_authenticated %}
                 <li><a href="{% url 'list_projects' %}"> List of Projects</a></li>
+                {% else %}
                 <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
