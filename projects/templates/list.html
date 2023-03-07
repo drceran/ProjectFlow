@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Projects
+{% endblock title %}
+
+{% block content %}
+<div>
+    <h1> My Projects </h1>
+    {% if projects_all.count <= 0 %} <p>You are not assigned to any projects.</p>
+        {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number of tasks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in projects_all %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>0</td>
+                    <!-- buraya projenin tasks inin objelerinin count unu ekleyeceksin -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+</div>
+{% endblock content %}
