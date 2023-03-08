@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from projects.models import Project
+from projects.forms import CreateProjectForm
 
 
 # Create your views here.
@@ -39,15 +40,24 @@ def show_project(request, id):
 #     return render(request, "detail.html", context)
 # sol taraftaki seyler, projenin objelerinin attribute lari, sag taraftaki seyler browser dan gelen request e iliskin seyler.
 
+
 # def show_project(request, id):
 #     project= get_object_or_404(Project, pk=id)
 #     return render(request, )
+def create_project(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
 
-
-# def task_properties(request):
-#     if not request.user.is_authenticated:
-#         return redirect("login")
-#     task_categories = Task.objects.all()
-#     context = {
-#         "task_categories":task
-#     }
+    if request.method == "POST":
+        form = CreateProjectForm(request.POST)
+        if form.is_valid():
+            saved_project = form.save(commit=False)
+            saved_project.owner = request.user
+            saved_project.save()
+            return redirect("list_projects")
+    else:
+        form = CreateProjectForm()
+    context = {
+        "form": form,
+    }
+    return render(request, "create.html", context)

@@ -9,6 +9,11 @@ Projects
     <h1> My Projects </h1>
     {% if projects_all.tasks.count <= 0 %} <p>You are not assigned to any projects.</p>
         {% else %}
+
+        <p>
+            <a href="{% url 'create_project' %}"> Create a new project</a>
+        </p>
+
         <table>
             <thead>
                 <tr>
