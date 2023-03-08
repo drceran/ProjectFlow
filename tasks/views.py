@@ -20,3 +20,13 @@ def create_task(request):
         "form": form,
     }
     return render(request, "tasks/create.html", context)
+
+
+def show_task(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
+    task_detail = Task.objects.filter(assignee=request.user)
+    context = {
+        "task_detail": task_detail,
+    }
+    return render(request, "tasks/mine.html", context)

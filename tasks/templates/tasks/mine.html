@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tasks
+{% endblock title %}
+
+{% block content %}
+<div>
+    <h1> My Tasks </h1>
+    {% if task_detail.count > 0 %}
+
+    <p>
+        <a href="{% url 'create_project' %}"> Create a new project</a>
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start date</th>
+                <th>Due date</th>
+                <th>Is completed</th>
+                {% for person in task_detail.assignee %}
+                <th>{{person}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in task_detail.all %}
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.start_date}}</td>
+                <td>{{item.due_date}}</td>
+                <td>{{item.is_completed|yesno:"yes,no"}}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else%} <p>You have no tasks</p> {% endif %}
+</div>
+{% endblock content %}
