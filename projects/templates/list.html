@@ -7,7 +7,7 @@ Projects
 {% block content %}
 <div>
     <h1> My Projects </h1>
-    {% if projects_all.count <= 0 %} <p>You are not assigned to any projects.</p>
+    {% if projects_all.tasks.count <= 0 %} <p>You are not assigned to any projects.</p>
         {% else %}
         <table>
             <thead>
@@ -17,10 +17,11 @@ Projects
                 </tr>
             </thead>
             <tbody>
-                {% for item in projects_all %}
+                {% for item in projects_all.all %}
                 <tr>
-                    <td>{{item.name}}</td>
-                    <td></td>
+                    <td><a href="{% url 'show_project' item.id %}">{{item.name}}</a> </td>
+                    <td>{{item.tasks.count}}</td>
+
                     <!-- buraya projenin tasks inin objelerinin count unu ekleyeceksin -->
                 </tr>
                 {% endfor %}

@@ -14,6 +14,9 @@
             <ul>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'list_projects' %}"> List of Projects</a></li>
+                {% for pc in project_categories %}
+                <li><a href="{% url 'show_project' pc.id %}">{{pc.name}}</a></li>
+                {% endfor %}
                 {% else %}
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Signup</a></li>

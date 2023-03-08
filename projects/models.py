@@ -15,5 +15,6 @@ class Project(models.Model):
         null=True,
     )
 
+    # tasks=[Task, Task, Task]
     def __str__(self):
         return self.name
