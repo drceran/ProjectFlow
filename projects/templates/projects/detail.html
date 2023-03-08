@@ -9,6 +9,9 @@ Project Details
     <h1>{{project_detail.name}}</h1>
     <p> {{project_detail.description}} </p>
     <h2>Tasks</h2>
+    <p>
+        <a href="{% url 'create_task' %}">Create a new task</a>
+    </p>
 
     {% if project_detail.tasks.count > 0 %}
 

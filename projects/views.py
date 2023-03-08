@@ -8,7 +8,7 @@ def list_projects(request):
     if request.user.is_authenticated:
         projects_all = Project.objects.filter(owner=request.user)
         context = {"projects_all": projects_all}
-        return render(request, "list.html", context)
+        return render(request, "projects/list.html", context)
     else:
         return redirect("login")
 
@@ -23,7 +23,7 @@ def show_project(request, id):
     context = {
         "project_detail": project_detail,
     }
-    return render(request, "detail.html", context)
+    return render(request, "projects/detail.html", context)
 
 
 # def show_project(request, id):
@@ -60,4 +60,4 @@ def create_project(request):
     context = {
         "form": form,
     }
-    return render(request, "create.html", context)
+    return render(request, "projects/create.html", context)
