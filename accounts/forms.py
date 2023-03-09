@@ -1,7 +1,6 @@
 from django import forms
 
 # from projects.models import Project
-from django.forms import ModelForm
 
 
 class LoginForm(forms.Form):

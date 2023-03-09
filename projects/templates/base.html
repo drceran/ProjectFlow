@@ -13,7 +13,7 @@
         <nav>
             <ul>
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'show_my_tasks' %}"> My tasks</a></li>
+                <li><a href="{% url 'show_my_tasks' %}"> My Tasks</a></li>
                 <li><a href="{% url 'list_projects' %}"> My Projects</a></li>
                 {% for pc in project_categories %}
                 <li><a href="{% url 'show_project' pc.id %}">{{pc.name}}</a></li>
